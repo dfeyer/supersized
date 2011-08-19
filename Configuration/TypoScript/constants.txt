@@ -1,0 +1,48 @@
+plugin.tx_supersized {
+	view {
+		# cat=plugin.tx_supersized/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:supersized/Resources/Private/Templates/
+		# cat=plugin.tx_supersized/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:supersized/Resources/Private/Partials/
+		# cat=plugin.tx_supersized/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:supersized/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_supersized//a; type=int+; label=Default storage PID
+		storagePid = 120
+	}
+	settings {
+		# cat=plugin.tx_supersized/conf; type=boolean; label=Search up in the rootline for background
+		recursive = 1
+		image {
+			# cat=plugin.tx_supersized/conf; type=int+; label=Background image max width
+			maxWidth = 1600
+			# cat=plugin.tx_supersized/conf; type=int+; label=Background image max height
+			maxHeight = 1200
+		}
+		include {
+			# cat=plugin.tx_supersized/conf; type=integer; label=Include jQuery (0 - no, 1 - local, 2 - Google API)
+			jquery = 0
+			# cat=plugin.tx_supersized/conf; type=boolean; label=Include Supersized JS + CSS
+			supersized = 1
+		}
+		js {
+			# cat=plugin.tx_supersized/file; type=string; label=Local jQuery library
+			jquery = EXT:Resources/Public/JavaScript/jquery.min.js
+			# cat=plugin.tx_supersized/file; type=string; label=Google API jQuery library
+			jquerycdn = https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js
+			# cat=plugin.tx_supersized/file; type=string; label=Supersized library
+			supersized = EXT:Resources/Public/JavaScript/supersized.core.3.2.0.min.js
+		}
+		css {
+		# cat=plugin.tx_supersized/file; type=string; label=Supersized CSS Library
+			supersized = EXT:Resources/Public/StyleSheet/supersized.core.css
+		}
+		default {
+			# cat=plugin.tx_supersized/conf; type=string; label=Default Background
+			resource = http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/kazvan-1.jpg
+			# cat=plugin.tx_supersized/conf; type=string; label=Default Background Title
+			title = Image Credit: Maria Kazvan
+		}
+	}
+}

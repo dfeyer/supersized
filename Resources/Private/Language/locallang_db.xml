@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'supersized'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_supersized_domain_model_resource">Background Image Resource</label>
+			<label index="tx_supersized_domain_model_resource.title">Title</label>
+			<label index="tx_supersized_domain_model_resource.resource">Resource</label>
+			<label index="pages.tx_supersized_background">Background Image</label>
+		</languageKey>
+	</data>
+</T3locallang>

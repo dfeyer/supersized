@@ -1,0 +1,36 @@
+{namespace medialib=Tx_Supersized_ViewHelpers}
+
+<f:layout name="Default"/>
+
+<f:section name="main">
+	<f:if condition="{includeSupersized}">
+		<script src="{supersizedScriptPath}" type="text/javascript"></script>
+	</f:if>
+	<script type="text/javascript">
+		jQuery(function($){
+			$.supersized({
+				<f:if condition="<f:count subject='{resources}' /> > 0">
+					// Functionality
+					start_slide : 0, // Start slide (0 is random)
+					new_window : 1, // Image links open in new window/tab
+					image_protect : 1, // Disables image dragging and right click with Javascript
+					// Size & Position
+					min_width : 0, // Min width allowed (in pixels)
+					min_height : 0, // Min height allowed (in pixels)
+					vertical_center : 1, // Vertically center background
+					horizontal_center : 1, // Horizontally center background
+					fit_always : 0, // Image will never exceed browser width or height (Ignores min. dimensions)
+					fit_portrait : 1, // Portrait images will not exceed browser height
+					fit_landscape : 0, // Landscape images will not exceed browser width
+				</f:if>
+				slides : [
+				<f:for each="{resources}" as="resource">
+					<![CDATA[
+					{image : ']]><medialib:image width="{settings.image.maxWidth}" height="{settings.image.maxHeight}" src="{resource.resource}" /><![CDATA[', title : ']]>{resource.title}<![CDATA['},
+					]]>
+				</f:for>
+				]
+			});
+		});
+	</script>
+</f:section>

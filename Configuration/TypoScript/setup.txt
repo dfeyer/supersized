@@ -1,0 +1,60 @@
+# Plugin configuration
+plugin.tx_supersized {
+	view {
+		templateRootPath = {$plugin.tx_supersized.view.templateRootPath}
+		partialRootPath = {$plugin.tx_supersized.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_supersized.view.layoutRootPath}
+	}
+
+	settings {
+		image {
+			maxWidth = {$plugin.tx_supersized.settings.image.maxWidth}
+			maxHeight = {$plugin.tx_supersized.settings.image.maxHeight}
+		}
+		include {
+			jquery = {$plugin.tx_supersized.settings.include.jquery}
+			supersized = {$plugin.tx_supersized.settings.include.supersized}
+		}
+		js {
+			jquery = {$plugin.tx_supersized.settings.js.jquery}
+			jquerycdn = {$plugin.tx_supersized.settings.js.jquerycdn}
+			supersized = {$plugin.tx_supersized.settings.js.supersized}
+		}
+		css {
+			supersized = {$plugin.tx_supersized.settings.css.supersized}
+		}
+		default {
+			title = {$plugin.tx_supersized.settings.default.title}
+			resource = {$plugin.tx_supersized.settings.default.resource}
+		}
+	}
+
+	persistence {
+		storagePid = {$plugin.tx_supersized.persistance.storagePid}
+		classes {
+			Tx_Supersized_Domain_Model_Page {
+				mapping {
+					tableName = pages
+					columns {
+						uid.mapOnProperty = uid
+						pid.mapOnProperty = pid
+						title.mapOnProperty = title
+						tx_supersized_background.mapOnProperty = background
+					}
+				}
+			}
+		}
+	}
+}
+
+plugin.tx_supersized.background {
+	configure = USER
+	configure {
+		userFunc = tx_extbase_core_bootstrap->run
+		extensionName = Supersized
+		pluginName = Background
+		settings =< plugin.tx_supersized.settings
+	}
+}
+
+page.footerData.1212 < plugin.tx_supersized.background.configure
