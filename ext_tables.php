@@ -41,7 +41,7 @@ t3lib_extMgm::addTCAcolumns(
 	'pages',
 	array(
 		'tx_supersized_background' => array(
-			'exclude' => 0,
+			'exclude' => 1,
 			'label' => 'LLL:EXT:supersized/Resources/Private/Language/locallang_db.xml:pages.tx_supersized_background',
 			'config' => array(
 				'type' => 'inline',

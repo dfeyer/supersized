@@ -3,7 +3,7 @@
 <f:layout name="Default"/>
 
 <f:section name="main">
-	<f:if condition="{includeSupersized}">
+	<f:if condition="{includeSupersized} && {supersizedScriptPath}">
 		<script src="{supersizedScriptPath}" type="text/javascript"></script>
 	</f:if>
 	<script type="text/javascript">

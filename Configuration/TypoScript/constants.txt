@@ -12,8 +12,6 @@ plugin.tx_supersized {
 		storagePid = 120
 	}
 	settings {
-		# cat=plugin.tx_supersized/conf; type=boolean; label=Search up in the rootline for background
-		recursive = 1
 		image {
 			# cat=plugin.tx_supersized/conf; type=int+; label=Background image max width
 			maxWidth = 1600
