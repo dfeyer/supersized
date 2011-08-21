@@ -37,7 +37,7 @@ class Tx_Supersized_Domain_Model_Page extends Tx_Extbase_DomainObject_AbstractVa
 	protected $uid;
 
 	/**
-	 * pid
+	 * Parent UID (pid)
 	 *
 	 * @var integer
 	 * @validate NotEmpty
@@ -45,7 +45,7 @@ class Tx_Supersized_Domain_Model_Page extends Tx_Extbase_DomainObject_AbstractVa
 	protected $pid;
 
 	/**
-	 * title
+	 * Page Title
 	 *
 	 * @var string
 	 * @validate NotEmpty
@@ -53,6 +53,8 @@ class Tx_Supersized_Domain_Model_Page extends Tx_Extbase_DomainObject_AbstractVa
 	protected $title;
 
 	/**
+	 * Page Background
+	 *
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_Supersized_Domain_Model_Resource>
 	 */
 	protected $background;

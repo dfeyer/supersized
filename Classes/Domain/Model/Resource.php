@@ -29,7 +29,7 @@
 class Tx_Supersized_Domain_Model_Resource extends Tx_Extbase_DomainObject_AbstractValueObject {
 
 	/**
-	 * title
+	 * Background Title
 	 *
 	 * @var string
 	 * @validate NotEmpty
@@ -37,7 +37,9 @@ class Tx_Supersized_Domain_Model_Resource extends Tx_Extbase_DomainObject_Abstra
 	protected $title;
 
 	/**
-	 * resource
+	 * Background Resource
+	 *
+	 * Can be a local relative path or a remote HTTP URL
 	 *
 	 * @var string
 	 * @validate NotEmpty
