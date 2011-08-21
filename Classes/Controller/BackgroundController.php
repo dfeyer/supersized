@@ -36,21 +36,44 @@ class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Contr
 	 */
 	public function configureAction() {
 
+		/** @var $pageRenderer t3lib_PageRenderer */
+		$pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
+
+			// Include jQuery library
 		if ($this->settings['include']['jquery'] == TRUE) {
-			if ($this->settings['include']['jquery'] === 'googleapis') {
-				$this->response->addAdditionalHeaderData('<script src="' . $this->settings['js']['jquerycdn']	 . '" type="text/javascript"></script>');
+			if ($this->settings['include']['jquery'] == 2) {
+					// Include from Google CDN
+				$pageRenderer->addJsFile($this->settings['js']['jquerycdn']);
 			} else {
-				$this->response->addAdditionalHeaderData('<script src="' . $this->getRelativePath($this->settings['js']['jquery'])	 . '" type="text/javascript"></script>');
+					// Include local library
+				$pageRenderer->addJsFile($this->getRelativePath($this->settings['js']['jquery']));
 			}
 		}
 
+			// Include Supersized library
 		if ($this->settings['include']['supersized'] == TRUE) {
-			// Include local version of the supersized library
-			$this->view->assign('includeSupersized', TRUE);
-			$this->response->addAdditionalHeaderData('<link media="screen" type="text/css" href="' . $this->getRelativePath($this->settings['css']['supersized'])	 . '" rel="stylesheet" />');
-			$this->view->assign('supersizedScriptPath', $this->getRelativePath($this->settings['js']['supersized']));
+				// Add supersized CSS
+			$pageRenderer->addCssFile($this->getRelativePath($this->settings['css']['supersized']));
+
+				// Add supersized JS
+			$pageRenderer->addJsFooterFile($this->getRelativePath($this->settings['js']['supersized']), 'text/javascript', TRUE, TRUE);
 		}
 
+		$this->view->assign('backgroundImages', $this->searchBackgroundImage());
+
+			// Include Supersized configuration
+		$configuration = $this->view->render();
+		$pageRenderer->addJsFooterInlineCode('supersized', $configuration);
+
+		return FALSE;
+	}
+
+	/**
+	 * Search for background image in the current rootline
+	 *
+	 * @return array|Tx_Extbase_Persistence_ObjectStorage
+	 */
+	protected function searchBackgroundImage() {
 		$resources = $this->resourceRepository->searchInRootline($GLOBALS['TSFE']->id);
 
 		if ($resources == FALSE || !($resources->current() instanceof Tx_Supersized_Domain_Model_Resource)) {
@@ -63,9 +86,15 @@ class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Contr
 			);
 		}
 
-		$this->view->assign('resources', $resources);
+		return $resources;
 	}
 
+	/**
+	 * Return the relative path of the given filename
+	 *
+	 * @param string $filename
+	 * @return mixed
+	 */
 	protected function getRelativePath($filename) {
 		return str_replace('EXT:', t3lib_extMgm::siteRelPath('supersized'), $filename);
 	}

@@ -57,4 +57,4 @@ plugin.tx_supersized.background {
 	}
 }
 
-page.footerData.1212 < plugin.tx_supersized.background.configure
+page.jsFooterInline.1212 < plugin.tx_supersized.background.configure
