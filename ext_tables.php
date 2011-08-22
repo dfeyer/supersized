@@ -2,6 +2,8 @@
 
 if (!defined ('TYPO3_MODE')) die ('Access denied.');
 
+require_once(t3lib_extMgm::extPath($_EXTKEY) . 'Classes/Utility/UserFuncUtility.php');
+
 // Load Typoscript
 t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Supersized Configuration');
 
@@ -10,7 +12,7 @@ $TCA['tx_supersized_domain_model_resource'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:supersized/Resources/Private/Language/locallang_db.xml:tx_supersized_domain_model_resource',
 		'label' => 'title',
-		'label_userFunc' => 'Tx_Supersized_Utility_UserFunc->getBackgroundTitle',
+		'label_userFunc' => 'Tx_Supersized_Utility_UserFuncUtility->getBackgroundTitle',
 		'default_sortby' => 'ORDER BY title',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',

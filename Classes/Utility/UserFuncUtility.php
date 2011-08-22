@@ -14,7 +14,7 @@
  * @package    Tx_Supersized_Utility_UserFunc
  * @author     Dominique Feyer <dominique.feyer@reelpeek.net>
  */
-class Tx_Supersized_Utility_UserFunc {
+class Tx_Supersized_Utility_UserFuncUtility {
 
 	public static function getBackgroundTitle($params, $pObj) {
 		if (isset($params['row']['uid']) && $params['row']['uid'] > 0) {
