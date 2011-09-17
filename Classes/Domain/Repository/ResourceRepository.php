@@ -71,16 +71,20 @@ class Tx_Supersized_Domain_Repository_ResourceRepository extends Tx_Extbase_Pers
 	}
 
 	protected function findInRootline(Tx_Supersized_Domain_Model_Page $currentPage) {
-		// Check resource in the current page
-		$backgroundImage = $currentPage->getBackground();
-		$backgroundImage->rewind();
+		try {
+			// Check resource in the current page
+			$backgroundImage = $currentPage->getBackground();
+			$backgroundImage->rewind();
 
-		if ($backgroundImage->current() instanceof Tx_Supersized_Domain_Model_Resource) {
-			return $backgroundImage;
-		} else {
-			// Check resource in the parent page
-			$parentPage = $this->pageRepository->findParent($currentPage);
-			return $this->findInRootline($parentPage);
+			if ($backgroundImage->current() instanceof Tx_Supersized_Domain_Model_Resource) {
+				return $backgroundImage;
+			} else {
+				// Check resource in the parent page
+				$parentPage = $this->pageRepository->findParent($currentPage);
+				return $this->findInRootline($parentPage);
+			}
+		} catch (t3lib_error_Exception $e) {
+			return FALSE;
 		}
 	}
 
