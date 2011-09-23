@@ -66,10 +66,18 @@ class Tx_Supersized_Domain_Repository_ResourceRepository extends Tx_Extbase_Pers
 		}
 	}
 
+	/**
+	 * @param Tx_Supersized_Domain_Model_Page $currentPage
+	 * @return Tx_Supersized_Domain_Model_Resource
+	 */
 	protected function findOneInRootline(Tx_Supersized_Domain_Model_Page $currentPage) {
 		return $this->findInRootline($currentPage)->current();
 	}
 
+	/**
+	 * @param Tx_Supersized_Domain_Model_Page $currentPage
+	 * @return bool|Tx_Extbase_Persistence_ObjectStorage
+	 */
 	protected function findInRootline(Tx_Supersized_Domain_Model_Page $currentPage) {
 		try {
 			// Check resource in the current page

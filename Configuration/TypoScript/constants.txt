@@ -29,12 +29,15 @@ plugin.tx_supersized {
 			jquery = EXT:Resources/Public/JavaScript/jquery.min.js
 			# cat=plugin.tx_supersized/file; type=string; label=Google API jQuery library
 			jquerycdn = https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js
-			# cat=plugin.tx_supersized/file; type=string; label=Supersized library
-			supersized = EXT:Resources/Public/JavaScript/supersized.core.3.2.0.min.js
+			# cat=plugin.tx_supersized/file; type=string; label=Supersized Core library
+			supersized.core = EXT:Resources/Public/JavaScript/supersized.core.3.2.1.min.js
+			# cat=plugin.tx_supersized/file; type=string; label=Supersized Slideshow library
+			supersized.slideshow = EXT:Resources/Public/JavaScript/supersized.3.2.4.min.js
 		}
 		css {
 		# cat=plugin.tx_supersized/file; type=string; label=Supersized CSS Library
-			supersized = EXT:Resources/Public/StyleSheet/supersized.core.css
+			supersized.core = EXT:Resources/Public/StyleSheet/supersized.core.css
+			supersized.slideshow = EXT:Resources/Public/StyleSheet/supersized.slideshow.css
 		}
 		default {
 			# cat=plugin.tx_supersized/conf; type=string; label=Default Background

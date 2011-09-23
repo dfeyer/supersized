@@ -7,6 +7,35 @@ plugin.tx_supersized {
 	}
 
 	settings {
+		mode = directory
+		directory = fileadmin/user_upload/background/
+		library = core
+		supersized {
+			core {
+				start_slide = 0
+				new_window = 1
+				image_protect = 1
+				min_width = 0
+				min_height = 0
+				vertical_center = 1
+				horizontal_center = 1
+				fit_always = 0
+				fit_portrait = 0
+				fit_landscape = 0
+			}
+			slideshow {
+				start_slide = 0
+				new_window = 1
+				image_protect = 1
+				min_width = 0
+				min_height = 0
+				vertical_center = 1
+				horizontal_center = 1
+				fit_always = 0
+				fit_portrait = 0
+				fit_landscape = 0
+			}
+		}
 		image {
 			maxWidth = {$plugin.tx_supersized.settings.image.maxWidth}
 			maxHeight = {$plugin.tx_supersized.settings.image.maxHeight}
@@ -18,10 +47,12 @@ plugin.tx_supersized {
 		js {
 			jquery = {$plugin.tx_supersized.settings.js.jquery}
 			jquerycdn = {$plugin.tx_supersized.settings.js.jquerycdn}
-			supersized = {$plugin.tx_supersized.settings.js.supersized}
+			supersized.core = {$plugin.tx_supersized.settings.js.supersized.core}
+			supersized.slideshow = {$plugin.tx_supersized.settings.js.supersized.slideshow}
 		}
 		css {
-			supersized = {$plugin.tx_supersized.settings.css.supersized}
+			supersized.core = {$plugin.tx_supersized.settings.css.supersized.core}
+			supersized.slideshow = {$plugin.tx_supersized.settings.css.supersized.slideshow}
 		}
 		default {
 			title = {$plugin.tx_supersized.settings.default.title}
