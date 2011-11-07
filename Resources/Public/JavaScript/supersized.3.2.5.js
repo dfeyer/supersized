@@ -1,7 +1,7 @@
 /*
 
 	Supersized - Fullscreen Slideshow jQuery Plugin
-	Version : 3.2.4
+	Version : 3.2.5
 	Site	: www.buildinternet.com/project/supersized
 	
 	Author	: Sam Dunn
@@ -143,18 +143,20 @@
 			/*-----Load initial set of images-----*/
 	
 			if (base.options.slides.length > 1){
-				// Set previous image
-				vars.current_slide - 1 < 0  ? loadPrev = base.options.slides.length - 1 : loadPrev = vars.current_slide - 1;	// If slide is 1, load last slide as previous
-				var imageLink = (base.options.slides[loadPrev].url) ? "href='" + base.options.slides[loadPrev].url + "'" : "";
+				if(base.options.slides.length > 2){
+					// Set previous image
+					vars.current_slide - 1 < 0  ? loadPrev = base.options.slides.length - 1 : loadPrev = vars.current_slide - 1;	// If slide is 1, load last slide as previous
+					var imageLink = (base.options.slides[loadPrev].url) ? "href='" + base.options.slides[loadPrev].url + "'" : "";
 				
-				var imgPrev = $('<img src="'+base.options.slides[loadPrev].image+'"/>');
-				var slidePrev = base.el+' li:eq('+loadPrev+')';
-				imgPrev.appendTo(slidePrev).wrap('<a ' + imageLink + linkTarget + '></a>').parent().parent().addClass('image-loading prevslide');
+					var imgPrev = $('<img src="'+base.options.slides[loadPrev].image+'"/>');
+					var slidePrev = base.el+' li:eq('+loadPrev+')';
+					imgPrev.appendTo(slidePrev).wrap('<a ' + imageLink + linkTarget + '></a>').parent().parent().addClass('image-loading prevslide');
 				
-				imgPrev.load(function(){
-					$(this).data('origWidth', $(this).width()).data('origHeight', $(this).height());
-					base.resizeNow();	// Resize background image
-				});	// End Load
+					imgPrev.load(function(){
+						$(this).data('origWidth', $(this).width()).data('origHeight', $(this).height());
+						base.resizeNow();	// Resize background image
+					});	// End Load
+				}
 			} else {
 				// Slideshow turned off if there is only one slide
 				base.options.slideshow = 0;
@@ -913,7 +915,7 @@
 		
 												   
 		// Components							
-		slide_links				:	1,			// Individual links for each slide	
+		slide_links				:	1,			// Individual links for each slide (Options: false, 'num', 'name', 'blank')
 		thumb_links				:	1,			// Individual thumb links for each slide
 		thumbnail_navigation    :   0			// Thumbnail navigation
     	
