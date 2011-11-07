@@ -56,14 +56,34 @@ class Tx_Supersized_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper
 	 * Resizes a given image (if required) and renders the respective img tag
 	 * @see http://typo3.org/documentation/document-library/references/doc_core_tsref/4.2.0/view/1/5/#id4164427
 	 *
-	 * @param string $src
+	 * @param string $backgroundImages
 	 * @param string $width
 	 * @param string $height height of the image. This can be a numeric value representing the fixed height of the image in pixels. But you can also perform simple calculations by adding "m" or "c" to the value. See imgResource.width for possible options.
 	 *
 	 * @return string
 	 */
-	public function render($src, $width = NULL, $height = NULL) {
-		// Skip remote image
+	public function render($backgroundImages, $width = NULL, $height = NULL) {
+		$images = array();
+
+		foreach ($backgroundImages as $image) {
+			$images[] = array(
+				'image' => $this->renderImage($image['resource'], $width, $height),
+				'title' => $image['title'],
+			);
+		}
+
+		return json_encode($images);
+	}
+
+	/**
+	 * @param string $src
+	 * @param string $width
+	 * @param string $height height of the image. This can be a numeric value representing the fixed height of the image in pixels. But you can also perform simple calculations by adding "m" or "c" to the value. See imgResource.width for possible options.
+	 * @return string
+	 * @throws Tx_Fluid_Core_ViewHelper_Exception
+	 */
+	protected function renderImage($src, $width = NULL, $height = NULL) {
+			// Skip remote image
 		if (substr($src, 0, 4) === 'http') {
 			return $src;
 		}

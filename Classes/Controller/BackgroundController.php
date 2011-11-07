@@ -17,6 +17,11 @@
 class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
+	 * @var t3lib_PageRenderer
+	 */
+	protected $pageRenderer;
+
+	/**
 	 * @var Tx_Supersized_Domain_Repository_ResourceRepository
 	 */
 	protected $resourceRepository;
@@ -36,8 +41,7 @@ class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Contr
 	 */
 	public function configureAction() {
 
-		/** @var $pageRenderer t3lib_PageRenderer */
-		$pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
+		$this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
 
 			// Set default mode
 		if (!isset($this->settings['library']) || trim($this->settings['library']) === '') {
@@ -51,46 +55,68 @@ class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Contr
 			);
 		}
 
-		$this->view->assign('library', $this->settings['library']);
+		$this->addJquery();
 
-			// Include jQuery library
-		if ($this->settings['include']['jquery'] == TRUE) {
-			if ($this->settings['include']['jquery'] == 2) {
-					// Include from Google CDN
-				$pageRenderer->addJsFile($this->settings['js']['jquerycdn']);
-			} else {
-					// Include local library
-				$pageRenderer->addJsFile($this->getRelativePath($this->settings['js']['jquery']));
-			}
-		}
-
-			// Include Supersized library
-		if ($this->settings['include']['supersized'] == TRUE) {
-				// Add supersized CSS
-			$pageRenderer->addCssFile($this->getRelativePath($this->settings['css']['supersized'][$this->settings['library']]));
-				// Add supersized JS
-			$pageRenderer->addJsFooterFile($this->getRelativePath($this->settings['js']['supersized'][$this->settings['library']]), 'text/javascript', TRUE, TRUE);
-		}
+		$this->addSupersized();
 
 		$backgroundImages = $this->searchBackgroundImage();
 
 		$this->view->assign('backgroundImages', $backgroundImages);
 
+		$this->prepareConfiguration($backgroundImages);
+
+		// Include Supersized configuration
+		$this->pageRenderer->addJsFooterInlineCode(
+			'supersized-' . $this->settings['library'],
+			$this->view->render()
+		);
+
+		return FALSE;
+	}
+
+	/**
+	 * @param $backgroundImages
+	 * @return void
+	 */
+	protected function prepareConfiguration($backgroundImages) {
 		if (count($backgroundImages) > 1) {
 			$configuration = $this->settings['supersized'][$this->settings['library']];
 		} else {
 			$configuration = array();
+			$this->settings['library'] = 'core';
 		}
 
+		$this->view->assign('library', $this->settings['library']);
 		$this->view->assign('configuration', $configuration);
+	}
 
+	/**
+	 * @return void
+	 */
+	protected function addSupersized() {
+			// Include Supersized library
+		if ($this->settings['include']['supersized'] == TRUE) {
+				// Add supersized CSS
+			$this->pageRenderer->addCssFile($this->getRelativePath($this->settings['css']['supersized'][$this->settings['library']]));
+				// Add supersized JS
+			$this->pageRenderer->addJsFooterFile($this->getRelativePath($this->settings['js']['supersized'][$this->settings['library']]), 'text/javascript', TRUE, TRUE);
+		}
+	}
 
-		// Include Supersized configuration
-		$configuration = $this->view->render();
-
-		$pageRenderer->addJsFooterInlineCode('supersized', $configuration);
-
-		return FALSE;
+	/**
+	 * @return void
+	 */
+	protected function addJquery() {
+			// Include jQuery library
+		if ($this->settings['include']['jquery'] == TRUE) {
+			if ($this->settings['include']['jquery'] == 2) {
+					// Include from Google CDN
+				$this->pageRenderer->addJsFile($this->settings['js']['jquerycdn']);
+			} else {
+					// Include local library
+				$this->pageRenderer->addJsFile($this->getRelativePath($this->settings['js']['jquery']));
+			}
+		}
 	}
 
 	/**
@@ -113,14 +139,14 @@ class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Contr
 		}
 
 		if ($resources == FALSE || !($resources instanceof Tx_Extbase_Persistence_ObjectStorage && $resources->current() instanceof Tx_Supersized_Domain_Model_Resource)) {
-			$this->setDefaultPageBackground();
+			$this->setDefaultBackgroundImage();
 		}
 
 		return $resources;
 	}
 
 	/**
-	 * @return void
+	 * @return array
 	 */
 	protected function searchBackgroundImageInDirectory() {
 		$resources = array();
@@ -152,7 +178,7 @@ class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Contr
 	/**
 	 * @return void
 	 */
-	protected function setDefaultPageBackground() {
+	protected function setDefaultBackgroundImage() {
 		// Set default page ressource
 		$resources = array(
 			array(

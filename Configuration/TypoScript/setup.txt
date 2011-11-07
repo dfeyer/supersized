@@ -9,31 +9,18 @@ plugin.tx_supersized {
 	settings {
 		mode = directory
 		directory = fileadmin/user_upload/background/
-		library = core
+		library = slideshow
 		supersized {
 			core {
 				start_slide = 0
-				new_window = 1
-				image_protect = 1
-				min_width = 0
-				min_height = 0
-				vertical_center = 1
-				horizontal_center = 1
-				fit_always = 0
 				fit_portrait = 0
-				fit_landscape = 0
 			}
 			slideshow {
-				start_slide = 0
-				new_window = 1
-				image_protect = 1
-				min_width = 0
-				min_height = 0
-				vertical_center = 1
-				horizontal_center = 1
-				fit_always = 0
+				transition = 1
+				transition_speed = 750
+				slide_interval = 5000
+				start_slide = 1
 				fit_portrait = 0
-				fit_landscape = 0
 			}
 		}
 		image {

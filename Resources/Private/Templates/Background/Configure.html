@@ -7,37 +7,12 @@
 	jQuery(function($){
 		$.supersized({
 			]]>
-			<f:if condition="{library} === 'core'">
-				start_slide : {configuration.start_slide},
-				new_window : {configuration.new_window},
-				image_protect : {configuration.image_protect},
-				min_width : {configuration.min_width},
-				min_height : {configuration.min_height},
-				vertical_center : {configuration.vertical_center},
-				horizontal_center : {configuration.horizontal_center},
-				fit_always : {configuration.fit_always},
-				fit_portrait : {configuration.fit_portrait},
-				fit_landscape : {configuration.fit_landscape},
-			</f:if>
-			<f:if condition="{library} === 'slideshow'">
-				start_slide : {configuration.start_slide},
-				new_window : {configuration.new_window},
-				image_protect : {configuration.image_protect},
-				min_width : {configuration.min_width},
-				min_height : {configuration.min_height},
-				vertical_center : {configuration.vertical_center},
-				horizontal_center : {configuration.horizontal_center},
-				fit_always : {configuration.fit_always},
-				fit_portrait : {configuration.fit_portrait},
-				fit_landscape : {configuration.fit_landscape},
-			</f:if>
-			slides : [
-			<f:for each="{backgroundImages}" as="image">
-				<![CDATA[
-				{image : ']]><medialib:image width="{settings.image.maxWidth}" height="{settings.image.maxHeight}" src="{image.resource}" /><![CDATA[', title : ']]>{image.title}<![CDATA['},
-				]]>
-			</f:for>
-			]
+				<f:for each="{configuration}" as="value" key="key">
+					<f:if condition="{value}">
+						{key}: {value},
+					</f:if>
+				</f:for>
+			slides : <medialib:image backgroundImages="{backgroundImages}" width="{settings.image.maxWidth}" height="{settings.image.maxHeight}" />
 		});
 	});
 </f:section>
