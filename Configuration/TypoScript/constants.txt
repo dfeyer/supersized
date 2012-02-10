@@ -32,7 +32,7 @@ plugin.tx_supersized {
 			# cat=plugin.tx_supersized/file; type=string; label=Supersized Core library
 			supersized.core = EXT:Resources/Public/JavaScript/supersized.core.3.2.1.min.js
 			# cat=plugin.tx_supersized/file; type=string; label=Supersized Slideshow library
-			supersized.slideshow = EXT:Resources/Public/JavaScript/supersized.3.2.5.min.js
+			supersized.slideshow = EXT:Resources/Public/JavaScript/supersized.3.2.6.min.js
 		}
 		css {
 		# cat=plugin.tx_supersized/file; type=string; label=Supersized CSS Library
