@@ -6,7 +6,7 @@ EXT: Supersized Background for TYPO3
 :Language: en
 :Keywords: design, background image, fullscreen
 :Dependency: PHP 5.3, TYPO3 4.5, Fluid 1.3, Extbase 1.3
-:Copyright: 2011, Dominique Feyer, <dominique.feyer@reelpeek.net>
+:Copyright: 2011, Dominique Feyer, <dfeyer@ttree.ch>
 
 This document is published under the Open Content License available from http://www.opencontent.org/opl.shtml
 

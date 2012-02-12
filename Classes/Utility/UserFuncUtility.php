@@ -1,6 +1,6 @@
 <?php
  /**
-  * (c) 2006-2010 Dominique Feyer <dominique.feyer@reelpeek.net>
+  * (c) Dominique Feyer <dfeyer@ttree.ch>
   *
   * For the full copyright and license information, please view the LICENSE
   * file that was distributed with this source code.
@@ -12,7 +12,7 @@
  * This class ...
  *
  * @package    Tx_Supersized_Utility_UserFunc
- * @author     Dominique Feyer <dominique.feyer@reelpeek.net>
+ * @author     Dominique Feyer <dfeyer@ttree.ch>
  */
 class Tx_Supersized_Utility_UserFuncUtility {
 

@@ -1,6 +1,6 @@
 <?php
  /**
-  * (c) 2006-2010 Dominique Feyer <dominique.feyer@reelpeek.net>
+  * (c) Dominique Feyer <dfeyer@ttree.ch>
   *
   * For the full copyright and license information, please view the LICENSE
   * file that was distributed with this source code.
@@ -12,7 +12,7 @@
  * This class ...
  *
  * @package    Tx_Supersized_Controller_BackgroundController
- * @author     Dominique Feyer <dominique.feyer@reelpeek.net>
+ * @author     Dominique Feyer <dfeyer@ttree.ch>
  */
 class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Controller_ActionController {
 
@@ -40,7 +40,6 @@ class Tx_Supersized_Controller_BackgroundController extends Tx_Extbase_MVC_Contr
 	 * @return string The rendered view
 	 */
 	public function configureAction() {
-
 		$this->pageRenderer = $GLOBALS['TSFE']->getPageRenderer();
 
 			// Set default mode

@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2011 Dominique Feyer <dominique.feyer@reelpeek.net>, ReelPeek
+ *  (c) 2011 Dominique Feyer <dfeyer@ttree.ch>
  *
  *  All rights reserved
  *
