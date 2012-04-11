@@ -67,8 +67,8 @@ class Tx_Supersized_ViewHelpers_ImageViewHelper extends Tx_Fluid_Core_ViewHelper
 
 		foreach ($backgroundImages as $image) {
 			$images[] = array(
-				'image' => $this->renderImage($image['resource'], $width, $height),
-				'title' => $image['title'],
+        'image' => $this->renderImage($image->getResource(), $width, $height),
+        'title' => $image->getTitle(),
 			);
 		}
 
